@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title> <%- title %> </title>    
+    </head>
+<body>
+
+
+<div class="row">
+    <div class="col-6">
+      <div class="card">
+        <h5 class="card-header">JS Json</h5>
+        <div class="card-body">
+          <ul></ul>
+        </div>
+        <div class="card-footer">
+          <input class="btn btn-success" type="submit" onclick="istek();">
+        </div>
+      </div>
+    </div>
+
+
+
+<script type="text/javascript">
+var timer = setInterval(istek,10000)
+
+    function istek(){
+
+      $.ajax({
+          type: 'post',
+          url: 'a',
+
+          success: (data)=>{  
+            $('title').html('basıldı')      
+            for(var k in data){
+              console.log("başarılı",data[k])
+              $('ul').append('<li>'+data[k]+'</li>');
+            }
+          },
+
+          beforeSend: function(){
+              $('ul').empty();
+          },
+
+          error: function(data){
+            $('ul').append("İstek Başarısız");
+          }
+      });
+    }
+  </script>
+<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+
+</body>
+</html>
