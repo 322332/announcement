@@ -4,10 +4,6 @@
     </head>
 <body>
 
-sayfa seçiniz<br>
-<a href="/computer">bilgisayar</a><br>
-<a href="/electronic">elektronik</a>
-
 
 <div class="row">
     <div class="col-6">
@@ -31,13 +27,13 @@ var timer = setInterval(istek,10000)
 
       $.ajax({
           type: 'post',
-          url: 'a/',
-
+          url: window.location+'/a/',
+          dataType: 'json',
           success: (data)=>{  
             $('title').html('basıldı')      
             for(var k in data){
              // console.log("başarılı",data[k])
-              $('ul').append('<li>'+data[k]+'</li>');
+              $('ul').append('<li>'+data[k].FirstName+'</li>'+'<li>'+data[k].LastName+'</li><br>');
             }
           },
 
