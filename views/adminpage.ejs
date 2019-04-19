@@ -1,0 +1,59 @@
+<html>
+    <head>
+    <title><%-title %></title>
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+
+    </head>
+    <body>
+
+
+
+       <div>
+    <input type="text" id="baslik">  
+    <input type="text" id="haber">  
+    <button id="ready">Gönder</button>
+       </div>   
+       <ul>
+
+       </ul>
+       
+       <table>
+            <% for(var i=0; i < data.length; i++) { %>
+               <tr>
+                 <td><span id="<%= data[i].baslik %>"><%= data[i].baslik %></span></td>
+                 <td><span id="<%= data[i].baslik %>"><%= data[i].haber %></span></td>
+                 <td><button onclick="duzenle()">Düzenle</button></td>
+               </tr>
+            <% } %>
+            </table>
+
+
+<script>
+    function duzenle(a){
+ $('span').each(function() {
+$(this).replaceWith($('<input type="text" value="'+this.innerHTML+'">'));
+})
+}
+
+$( document ).ready(function() {
+$("#ready").click(()=>{   
+    $.ajax({
+        url: "admin/kaydet",
+        type: "POST",
+        dataType: "json",
+        data: {
+        baslik: $('#baslik').val(),
+        haber: $('#haber').val()
+        }
+    })
+    .done(function (data) {
+    $('table').append('<tr><td>'+$('#baslik').val()+'</td><td>'+$('#haber').val()+'</td></tr>');
+    $('#baslik').val("")
+    $('#haber').val("")
+    })
+})
+});
+</script>
+
+    </body>
+</html>

@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title> <%- title %> </title>    
+        <title> <%- title %> </title>   
     </head>
 <body>
 
@@ -10,7 +10,9 @@
       <div class="card">
         <h5 class="card-header">JS Json</h5>
         <div class="card-body">
-          <ul></ul>
+            <marquee align="middle" scrollamount="1" height="150px" width="100%" direction="down"scrolldelay="1">
+              <ul></ul>
+            </marquee>
         </div>
         <div class="card-footer">
           <input class="btn btn-success" type="submit" onclick="istek();">
@@ -33,7 +35,7 @@ var timer = setInterval(istek,10000)
             $('title').html('basıldı')      
             for(var k in data){
              // console.log("başarılı",data[k])
-              $('ul').append('<li>'+data[k].FirstName+'</li>'+'<li>'+data[k].LastName+'</li><br>');
+              $('ul').append('<li>'+data[k].baslik+'</li>'+'<li>'+data[k].haber+'</li><br>');
             }
           },
 

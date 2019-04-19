@@ -32,7 +32,7 @@ var timer = setInterval(istek,10000)
       $.ajax({
           type: 'post',
           url: 'a/',
-
+          
           success: (data)=>{  
             $('title').html('basıldı')      
             for(var k in data){

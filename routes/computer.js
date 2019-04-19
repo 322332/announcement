@@ -12,14 +12,10 @@ router.get('/', function(req, res) {
   })
 
 
-  const kisiler = {'bilga':{job:'Öğrenci'},'bilgb':{job:'Öğrenci'},
-  'bilgc':{job:'Prof'},'bilgd':{job:'Serbest Meslek'}}
-  
-
 
 
   router.post('/a',function(req,res){
-    var sql="Select * From Persons"
+    var sql="Select * From haberler"
     db.query(sql,function (err, result, fields) {
       if (err) res.send(err);
       res.json(result)
