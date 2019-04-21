@@ -1,9 +1,4 @@
-<html>
-    <head>
-        <title> <%- title %> </title>   
-    </head>
-<body>
-
+<% include includes/header.ejs %> 
 
 <div class="row">
     <div class="col-6">
@@ -11,7 +6,7 @@
         <h5 class="card-header">JS Json</h5>
         <div class="card-body">
             <marquee align="middle" scrollamount="1" height="150px" width="100%" direction="down"scrolldelay="1">
-              <ul></ul>
+              <ul id="liste"></ul>
             </marquee>
         </div>
         <div class="card-footer">
@@ -19,7 +14,6 @@
         </div>
       </div>
     </div>
-
 
 
 <script type="text/javascript">
@@ -35,21 +29,21 @@ var timer = setInterval(istek,10000)
             $('title').html('basıldı')      
             for(var k in data){
              // console.log("başarılı",data[k])
-              $('ul').append('<li>'+data[k].baslik+'</li>'+'<li>'+data[k].haber+'</li><br>');
+              $('#liste').append('<li>'+data[k].baslik+'</li>'+'<li>'+data[k].haber+'</li><br>');
             }
           },
 
           beforeSend: function(){
-              $('ul').empty();
+              $('#liste').empty();
           },
 
           error: function(data){
-            $('ul').append("İstek Başarısız");
+            $('#liste').append("İstek Başarısız");
           }
       });
     }
   </script>
-<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
 
-</body>
-</html>
+
+
+<% include includes/footer.ejs %> 
