@@ -1,8 +1,11 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+#mainPage .col-sm-8 {
+padding-left:0px;
+padding-right:0px;
 }
 
-a {
-  color: #00B7FF;
+#mainPage .col-sm-4 {
+padding-left:0px;
+padding-right:0px;
+
 }
