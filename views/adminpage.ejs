@@ -5,7 +5,7 @@
        <div>
     <input type="text" id="baslik">  
     <input type="text" id="haber">  
-    <button id="ready">Gönder</button>
+    <button onclick="kaydet()">Gönder</button>
        </div>   
        <ul>
 
@@ -29,8 +29,8 @@ $(this).replaceWith($('<input type="text" value="'+this.innerHTML+'">'));
 })
 }
 
-$( document ).ready(function() {
-$("#ready").click(()=>{   
+
+function kaydet(){   
     $.ajax({
         url: "admin/kaydet",
         type: "POST",
@@ -45,8 +45,8 @@ $("#ready").click(()=>{
     $('#baslik').val("")
     $('#haber').val("")
     })
-})
-});
+}
+
 </script>
 
 <% include includes/footer.ejs %> 
