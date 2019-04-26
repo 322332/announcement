@@ -1,25 +1,71 @@
 <% include includes/header.ejs %> 
 
 
-
-       <div>
-    <input type="text" id="baslik">  
-    <input type="text" id="haber">  
-    <button onclick="kaydet()">Gönder</button>
-       </div>   
-       <ul>
-
-       </ul>
-       
-       <table>
-            <% for(var i=0; i < data.length; i++) { %>
-               <tr>
-                 <td><span id="<%= data[i].baslik %>"><%= data[i].baslik %></span></td>
-                 <td><span id="<%= data[i].baslik %>"><%= data[i].haber %></span></td>
-                 <td><button onclick="duzenle()">Düzenle</button></td>
-               </tr>
-            <% } %>
+<section id="adminPanel">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-4">
+<!--card başlangıç-->
+<div class="card">
+        <h5 class="card-header">Görsel Haber</h5>
+        <div class="card-body">
+          <h5 class="card-title">Görsel Haber</h5>
+          <p class="card-text">resim</p>
+          <input type="text" id="resim">
+          <p class="card-text">başlık</p>
+          <input type="text" id="baslik">  
+          <p class="card-text">haber</p>
+          <input type="text" id="haber"> 
+          <br><br> 
+          <a href="#" onclick="kaydet()" class="btn btn-primary">Kaydet</a>
+          <hr>
+          <!--tablobaşlangıç-->
+          <table>
+                <% for(var i=0; i < data.length; i++) { %>
+                   <tr>
+                     <td><span id="<%= data[i].baslik %>"><%= data[i].baslik %></span></td>
+                     <td><span id="<%= data[i].baslik %>"><%= data[i].haber %></span></td>
+                     <td><button onclick="duzenle()">Düzenle</button></td>
+                   </tr>
+                <% } %>
             </table>
+          <!--tablobitiş-->
+        </div>
+      </div>
+<!--card bitiş-->
+                </div>
+                <div class="col-sm-4">
+<!--card başlangıç-->
+<div class="card">
+        <h5 class="card-header">Featured</h5>
+        <div class="card-body">
+          <h5 class="card-title">Special title treatment</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    <!--card bitiş-->
+                </div>
+                <div class="col-sm-4">
+<!--card başlangıç-->
+<div class="card">
+        <h5 class="card-header">Featured</h5>
+        <div class="card-body">
+          <h5 class="card-title">Special title treatment</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    <!--card bitiş-->
+                </div>
+            </div>
+        </div>
+</section>
+
+
+
+       
+     
 
 
 <script>
@@ -37,11 +83,13 @@ function kaydet(){
         dataType: "json",
         data: {
         baslik: $('#baslik').val(),
-        haber: $('#haber').val()
+        haber: $('#haber').val(),
+        resim: $('#resim').val()
         }
     })
     .done(function (data) {
     $('table').append('<tr><td>'+$('#baslik').val()+'</td><td>'+$('#haber').val()+'</td></tr>');
+    $('#resim').val("")    
     $('#baslik').val("")
     $('#haber').val("")
     })

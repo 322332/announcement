@@ -61,16 +61,48 @@
     </div>
   </div>
 <!--card bitiş-->
-<!--card başlangıç-->
-<div class="card">
-    <h5 class="card-header">Featured</h5>
-    <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+<!--KAYAN DUYURU BAŞLANGIÇ-->
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <% for(var i=0; i < duyuru.length; i++) { %>
+          <%if (i == 0) { %>
+            <div class="carousel-item active">
+  <!--card başlangıç-->
+  <div class="card">
+      <h5 class="card-header"><%- duyuru[i].duyuruBaslik %></h5>
+      <div class="card-body">
+          <h6 class="card-subtitle mb-2 text-muted"><%- duyuru[i].duyuruTarihi %></h6>
+        <p class="card-text"><%- duyuru[i].duyuruIcerik %></p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
     </div>
+  <!--card bitiş-->
+              </div>
+              <% } else{ %>  
+                <div class="carousel-item">
+  <!--card başlangıç-->
+  <div class="card">
+      <h5 class="card-header"><%- duyuru[i].duyuruBaslik %></h5>
+      <div class="card-body">
+          <h6 class="card-subtitle mb-2 text-muted"><%- duyuru[i].duyuruTarihi %></h6>
+        <p class="card-text"><%- duyuru[i].duyuruIcerik %></p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  <!--card bitiş-->
+                </div> 
+                <% } %>
+       <% } %>
+      </div>
+   
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+   
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+ 
+    </a>
   </div>
-<!--card bitiş-->
+  <!--KAYAN DUYURU BİTİŞ-->
       </div>
     </div>
 </div>
@@ -108,3 +140,10 @@ var timer = setInterval(istek,10000)
 
 
 <% include includes/footer.ejs %> 
+
+
+
+
+
+
+
