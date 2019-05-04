@@ -48,10 +48,10 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-<!--Slide end-->
+<!-- Slide End -->
       </div>
       <div class="col-sm-4">
-<!--card başlangıç-->
+<!-- Card Başlangıç -->
 <div class="card">
     <h5 class="card-header">Ders Programı : <%- dersProg[0].gunAdi %></h5>
     <div class="card-body">
@@ -61,14 +61,14 @@
       <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>
   </div>
-<!--card bitiş-->
-<!--KAYAN DUYURU BAŞLANGIÇ-->
+<!-- card bitiş -->
+<!-- KAYAN DUYURU BAŞLANGIÇ -->
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner"  id="duyur">
         <% for(var i=0; i < duyuru.length; i++) { %>
           <%if (i == 0) { %>
             <div class="carousel-item active">
-  <!--card başlangıç-->
+  <!-- card başlangıç -->
   <div class="card">
       <h5 class="card-header"><%- duyuru[i].duyuruBaslik %></h5>
       <div class="card-body">
@@ -115,7 +115,7 @@ var timer = setInterval(istek,30000)
 
       $.ajax({
           type: 'post',
-          url: window.location+'/a/',
+          url: '/computer/a/',
           dataType: 'json',
           success: (data)=>{  
             for(var k in data){
@@ -149,13 +149,12 @@ else
     }
   </script>
  
+<nav cnav class="navbar navbar-light bg-light">
+  <div id="awning">
+    <div class="awning" data-pauseOnHover="true" data-duration='10000'>gökhan</div></div>
+</nav>
 
 
-<% include includes/footer.ejs %> 
 
 
-
-
-<ul id="liste"></ul>
-
-
+<% include includes/footer.ejs %>
