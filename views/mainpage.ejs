@@ -53,17 +53,18 @@
       <div class="col-sm-4">
 <!--card başlangıç-->
 <div class="card">
-    <h5 class="card-header">Featured</h5>
+    <h5 class="card-header">Ders Programı : <%- dersProg[0].gunAdi %></h5>
     <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <% for(var i=0; i < dersProg.length; i++) { %>
+      <p class="card-text"><%- dersProg[i].dersAdi %> - <%- dersProg[i].dersSaati %> - <%- dersProg[i].derslik %></p>
+      <% } %>
       <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>
   </div>
 <!--card bitiş-->
 <!--KAYAN DUYURU BAŞLANGIÇ-->
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
+    <div class="carousel-inner"  id="duyur">
         <% for(var i=0; i < duyuru.length; i++) { %>
           <%if (i == 0) { %>
             <div class="carousel-item active">
@@ -71,7 +72,6 @@
   <div class="card">
       <h5 class="card-header"><%- duyuru[i].duyuruBaslik %></h5>
       <div class="card-body">
-          <h6 class="card-subtitle mb-2 text-muted"><%- duyuru[i].duyuruTarihi %></h6>
         <p class="card-text"><%- duyuru[i].duyuruIcerik %></p>
         <a href="#" class="btn btn-primary">Go somewhere</a>
       </div>
@@ -84,7 +84,6 @@
   <div class="card">
       <h5 class="card-header"><%- duyuru[i].duyuruBaslik %></h5>
       <div class="card-body">
-          <h6 class="card-subtitle mb-2 text-muted"><%- duyuru[i].duyuruTarihi %></h6>
         <p class="card-text"><%- duyuru[i].duyuruIcerik %></p>
         <a href="#" class="btn btn-primary">Go somewhere</a>
       </div>
@@ -110,7 +109,7 @@
 
 
 <script type="text/javascript">
-var timer = setInterval(istek,10000)
+var timer = setInterval(istek,30000)
 
     function istek(){
 
@@ -119,19 +118,32 @@ var timer = setInterval(istek,10000)
           url: window.location+'/a/',
           dataType: 'json',
           success: (data)=>{  
-            $('title').html('basıldı')      
             for(var k in data){
-             // console.log("başarılı",data[k])
-              $('#liste').append('<li>'+data[k].baslik+'</li>'+'<li>'+data[k].haber+'</li><br>');
+             if(k==0)
+             $('#duyur').append('<div class="carousel-item active">'+
+      '<div class="card">'+
+      '<h5 class="card-header">'+ data[k].duyuruBaslik+'</h5>'+
+     ' <div class="card-body">' +
+       ' <p class="card-text">'+data[k].duyuruIcerik+'</p>'+
+       ' <a href="#" class="btn btn-primary">Go somewhere</a>'+
+       ' </div> </div> </div> ');
+else             
+       $('#duyur').append('<div class="carousel-item">'+
+      '<div class="card">'+
+      '<h5 class="card-header">'+ data[k].duyuruBaslik+'</h5>'+
+     ' <div class="card-body">' +
+       ' <p class="card-text">'+data[k].duyuruIcerik+'</p>'+
+       ' <a href="#" class="btn btn-primary">Go somewhere</a>'+
+       ' </div> </div> </div> ');
             }
           },
 
           beforeSend: function(){
-              $('#liste').empty();
+              $('#duyur').empty();
           },
 
           error: function(data){
-            $('#liste').append("İstek Başarısız");
+            $('#duyur').append("İstek Başarısız");
           }
       });
     }
@@ -144,6 +156,6 @@ var timer = setInterval(istek,10000)
 
 
 
-
+<ul id="liste"></ul>
 
 

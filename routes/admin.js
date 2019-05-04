@@ -21,7 +21,7 @@ router.post('/kaydet',function(req,res){
     const bas = req.body.baslik
     const hab = req.body.haber
 
-    db.query("insert into GorselHaber(resim,baslik,haber) value(?,?,?)",[resim,bas,hab],function(a,b,c){
+    db.query("insert into GorselHaber(resim,bolumID,baslik,haber) value(?,?,?,?)",[resim,'0',bas,hab],function(a,b,c){
         res.end('{"success" : "Updated Successfully", "status" : 200}');
     })
 
