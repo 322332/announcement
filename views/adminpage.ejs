@@ -1,65 +1,142 @@
 <% include includes/header.ejs %> 
 
 
+<!-- Goruntulu haber Modal -->
+<div class="modal fade" id="goruntuluModal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>      
+      </div>
+      <div class="modal-body">
+          
+        <p class="card-text">Resim</p>
+        <input type="text" id="resim">
+        <p class="card-text">Başlık</p>
+        <input type="text" id="baslik">  
+        <p class="card-text">haber</p>
+        <input type="text" id="haber"> 
+        <br><br>
+        <div class="modal-footer">
+         <button onclick="gkaydet()" type="button" class="btn btn-primary">Kaydet</button>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+</div>
+
+
+<!-- Duyurular Modal -->
+<div class="modal fade" id="duyuruModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>      
+        </div>
+        <div class="modal-body">
+            
+          <p class="card-text">Başlık</p>
+          <input type="text" id="dbaslik">
+          <p class="card-text">İçerik</p>
+          <input type="text" id="dicerik">  
+          <p class="card-text">Tarih</p>
+          <input type="date" id="dtarih"> 
+          <br><br>
+          <div class="modal-footer">
+           <button onclick="dkaydet()" type="button" class="btn btn-primary">Kaydet</button>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <section id="adminPanel">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-4">
-<!--card başlangıç-->
+
+<!--Görsel Haber Kartı-->
+<div class="col-sm-3">
 <div class="card">
         <h5 class="card-header">Görsel Haber</h5>
         <div class="card-body">
-          <h5 class="card-title">Görsel Haber</h5>
-          <p class="card-text">resim</p>
-          <input type="text" id="resim">
-          <p class="card-text">başlık</p>
-          <input type="text" id="baslik">  
-          <p class="card-text">haber</p>
-          <input type="text" id="haber"> 
-          <br><br> 
-          <a href="#" onclick="kaydet()" class="btn btn-primary">Kaydet</a>
-          <hr>
+            <button onclick="gtemizle()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#goruntuluModal">Yeni Ekle</button><br><br>
           <!--tablobaşlangıç-->
-          <table>
-                <% for(var i=0; i < data.length; i++) { %>
-                   <tr>
-                     <td><span id="<%= data[i].baslik %>"><%= data[i].baslik %></span></td>
-                     <td><span id="<%= data[i].baslik %>"><%= data[i].haber %></span></td>
-                     <td><button onclick="duzenle()">Düzenle</button></td>
-                   </tr>
-                <% } %>
-            </table>
+          <table class="table">
+          <% for(var i=0; i < gorsel.length; i++) { %>
+            <tr class="<%= gorsel[i].ghaberID %>">
+                <td><span class="card-text" id="<%= gorsel[i].ghaberID %>a"><%= gorsel[i].resim %></span><br>
+                <span class="card-text" id="<%= gorsel[i].ghaberID %>b"><%= gorsel[i].baslik %></span><br>
+                <span class="card-text" id="<%= gorsel[i].ghaberID %>c"><%= gorsel[i].haber %></span></td>
+            </tr>
+            <tr class="<%= gorsel[i].ghaberID %>">
+                <td>
+                <button id="<%= gorsel[i].ghaberID %>" onclick="gduzenle(this.id)" class="btn btn-outline-primary">Düzenle</button>
+                <button id="<%= gorsel[i].ghaberID %>" onclick="gsil(this.id)" class="btn btn-danger">Sil</button>
+                </td>
+            </tr>
+              <% } %>
+          </table>
           <!--tablobitiş-->
         </div>
       </div>
-<!--card bitiş-->
-                </div>
-                <div class="col-sm-4">
-<!--card başlangıç-->
-<div class="card">
-        <h5 class="card-header">Featured</h5>
+</div>
+<!-- görsel haber card bitiş-->
+
+<!--Duyurular Kartı-->
+  <div class="col-sm-3">
+    <div class="card">
+        <h5 class="card-header">Duyuru</h5>
         <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+            <button onclick="dtemizle()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#duyuruModal">Yeni Ekle</button><br><br>
+ <!--tablobaşlangıç-->
+ <table class="table">
+    <% for(var i=0; i < duyuru.length; i++) { %>
+      <tr class="<%= duyuru[i].duyuruID %>">
+          <td><span class="card-text" id="<%= duyuru[i].duyuruID %>a"><%= duyuru[i].duyuruBaslik %></span><br>
+          <span class="card-text" id="<%= duyuru[i].duyuruID %>b"><%= duyuru[i].duyuruIcerik %></span><br>
+          <span class="card-text" id="<%= duyuru[i].duyuruID %>c"><%= duyuru[i].duyuruTarihi %></span></td>
+      </tr>
+      <tr class="<%= duyuru[i].duyuruID %>">
+          <td>
+          <button id="<%= duyuru[i].duyuruID %>" onclick="dduzenle(this.id)" class="btn btn-outline-primary">Düzenle</button>
+          <button id="<%= duyuru[i].duyuruID %>" onclick="dsil(this.id)" class="btn btn-danger">Sil</button>
+          </td>
+      </tr>
+        <% } %>
+    </table>
+    <!--tablobitiş-->
         </div>
-      </div>
-    <!--card bitiş-->
-                </div>
-                <div class="col-sm-4">
-<!--card başlangıç-->
-<div class="card">
-        <h5 class="card-header">Featured</h5>
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-    <!--card bitiş-->
-                </div>
-            </div>
-        </div>
+    </div>
+  </div>
+  <!-- duyurular card bitiş-->
+</div>
+</div>
+
 </section>
 
 
@@ -69,30 +146,127 @@
 
 
 <script>
-    function duzenle(a){
- $('span').each(function() {
-$(this).replaceWith($('<input type="text" value="'+this.innerHTML+'">'));
-})
+var gkontrol=-1
+var dkontrol=-1
+//görsel habertemizle
+function gtemizle(){
+  $('#resim').val("")    
+    $('#baslik').val("")
+    $('#haber').val("")
+}
+//duyuru temizle
+function dtemizle(){
+    $('#dbaslik').val("")    
+    $('#dicerik').val("")
+    $('#dtarih').val("")
 }
 
 
-function kaydet(){   
+
+
+function gduzenle(a){
+    $('#resim').val($('#'+a+'a').text())    
+    $('#baslik').val($('#'+a+'b').text())
+    $('#haber').val($('#'+a+'c').text())
+ gkontrol=a
+ $('#goruntuluModal').modal('show');
+}
+function dduzenle(a){
+  $('#dbaslik').val($('#'+a+'a').text())    
+  $('#dicerik').val($('#'+a+'b').text())
+  $('#dtarih').val($('#'+a+'c').text())
+ dkontrol=a
+ $('#duyuruModal').modal('show');
+}
+
+
+
+
+
+//görüntülü haber kaydet
+function gkaydet(){   
+  var olay
+if(gkontrol!=-1)
+olay="gduzenle"
+else
+olay="gkaydet"
     $.ajax({
-        url: "admin/kaydet",
+        url: "admin/"+olay,
         type: "POST",
         dataType: "json",
         data: {
         baslik: $('#baslik').val(),
         haber: $('#haber').val(),
-        resim: $('#resim').val()
+        resim: $('#resim').val(),
+        duzenlenen: gkontrol
         }
     })
     .done(function (data) {
-    $('table').append('<tr><td>'+$('#baslik').val()+'</td><td>'+$('#haber').val()+'</td></tr>');
-    $('#resim').val("")    
-    $('#baslik').val("")
-    $('#haber').val("")
+    location.reload();
     })
+    
+}
+//duyuru kaydet
+function dkaydet(){   
+  var olay
+if(dkontrol!=-1)
+olay="dduzenle"
+else
+olay="dkaydet"
+    $.ajax({
+        url: "admin/"+olay,
+        type: "POST",
+        dataType: "json",
+        data: {
+        dbaslik: $('#dbaslik').val(),
+        dicerik: $('#dicerik').val(),
+        dtarih: $('#dtarih').val(),
+        duzenlenen: dkontrol
+        }
+    })
+    .done(function (data) {
+    location.reload();
+    })
+    
+}
+
+
+
+function gsil(a){
+  if (confirm('silejeeam?')) {
+    $.ajax({
+        url: "admin/gsil",
+        type: "POST",
+        dataType: "json",
+        data: {
+        sil: a
+        }
+       
+    }) .done(function (data) {
+      $('.'+a).fadeOut(500, function(){ $(this).remove();});
+    })
+    
+} else {
+    // Do nothing!
+}
+}
+function dsil(a){
+  if (confirm('silejeeam?')) {
+    $.ajax({
+        url: "admin/dsil",
+        type: "POST",
+        dataType: "json",
+        data: {
+        sil: a
+        }
+       
+    }) .done(function (data) {
+      $('.'+a).fadeOut(500, function(){ $(this).remove();});
+    })
+    
+} else {
+    // Do nothing!
+}
 }
 
 </script>

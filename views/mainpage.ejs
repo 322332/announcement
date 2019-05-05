@@ -51,9 +51,9 @@
 <!-- Slide End -->
       </div>
       <div class="col-sm-4">
-<!-- Card Başlangıç -->
+<!-- Ders Programı card Başlangıç -->
 <div class="card">
-    <h5 class="card-header">Ders Programı : <%- dersProg[0].gunAdi %></h5>
+    <h5 class="card-header">Ders Programı :  <%if (dersProg.length != 0) { %> <%- dersProg[0].gunAdi %> <% } %></h5>
     <div class="card-body">
       <% for(var i=0; i < dersProg.length; i++) { %>
       <p class="card-text"><%- dersProg[i].dersAdi %> - <%- dersProg[i].dersSaati %> - <%- dersProg[i].derslik %></p>
@@ -61,7 +61,7 @@
       <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>
   </div>
-<!-- card bitiş -->
+<!-- Ders Programı card Bitiş -->
 <!-- KAYAN DUYURU BAŞLANGIÇ -->
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner"  id="duyur">
@@ -111,6 +111,18 @@
 <script type="text/javascript">
 var timer = setInterval(istek,30000)
 
+
+
+function kayanYazi(){
+  
+}
+
+
+
+
+
+
+
     function istek(){
 
       $.ajax({
@@ -150,8 +162,10 @@ else
   </script>
  
 <nav cnav class="navbar navbar-light bg-light">
-  <div id="awning">
-    <div class="awning" data-pauseOnHover="true" data-duration='10000'>gökhan</div></div>
+  
+    <% for(var i=0; i < altduyuru.length; i++) { %>
+  <%- altduyuru[i].duyuru %>
+  <% } %>
 </nav>
 
 
